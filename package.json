@@ -1,0 +1,71 @@
+{
+  "name": "portalaudio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "inherits": "^2.0.3",
+    "mediaserver": "^0.1.1",
+    "path": "^0.12.7",
+    "process": "^0.11.10",
+    "util": "^0.10.4"
+  },
+  "scripts": {
+    "start": "electron-forge start",
+    "test": "electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bouftout/PortalAudio.git"
+  },
+  "keywords": [
+    "Portal",
+    "Audio",
+    "AudioPlayer",
+    "PortalAudio"
+  ],
+  "author": "ToniPortal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bouftout/PortalAudio/issues"
+  },
+  "homepage": "https://github.com/Bouftout/PortalAudio#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "electron": "16.0.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "portalaudio"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
