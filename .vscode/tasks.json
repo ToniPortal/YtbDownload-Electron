@@ -4,7 +4,10 @@
 		{
 			"type": "npm",
 			"script": "test",
-			"group": "test",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
 			"problemMatcher": [],
 			"label": "npm: test",
 			"detail": "electron ."
