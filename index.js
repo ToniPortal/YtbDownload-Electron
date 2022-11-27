@@ -31,7 +31,7 @@ function createWindow() {
         var yti = await ytdl.getBasicInfo(arg)
         console.log(`idytb: ${yti.videoDetails.videoId}\nTitre: ${yti.videoDetails.title}\nNom de la chaîne: ${yti.videoDetails.ownerChannelName}\nDate d'upload: ${yti.videoDetails.uploadDate}`)
         event.returnValue = `idytb: ${yti.videoDetails.videoId}\nTitre: ${yti.videoDetails.title}\nNom de la chaîne: ${yti.videoDetails.ownerChannelName}\nDate d'upload: ${yti.videoDetails.uploadDate}`;
-
+        event.returnValue = "";
     });
 
 
@@ -60,24 +60,43 @@ function createWindow() {
         })
     })
 
+    ipcMain.on('servconvert', async (event, arg) => {
+
+        await new Promise((resolve) => { // wait
+            var video = ytdl(`${arg}`,{quality: 18})
+            video.pipe(fs.createWriteStream('./download/video.mp4'))
+            video.on('close', () => {
+                resolve(); // finish
+            })
+
+            video.on('response', function (res) {
+                var totalSize = parseInt(res.headers['content-length'],10);
+                var dataRead = 0;
+                if(dataRead == 0){
+                    console.log("Total"+totalSize)
+                    win.webContents.send('total', totalSize)
+                }
+                res.on('data', function (data) {
+                    dataRead += data.length;
+                    // var percent = (dataRead / totalSize * 100).toFixed(2);
+                    
+                   win.webContents.send('down', `${dataRead}`);
+
+                });
+                res.on('end', function () {
+                    win.webContents.send('finish', 'end')
+                });
+            });
+        })
+
+    });
 
 }
 
 app.whenReady().then(() => {
     createWindow()
 
-    ipcMain.on('servconvert', async (event, arg) => {
 
-        await new Promise((resolve) => { // wait
-            ytdl(`${arg}`)
-                .pipe(fs.createWriteStream('./download/video.mp4'))
-                .on('close', () => {
-                    event.returnValue = 'Video télécharger';
-                    resolve(); // finish
-                })
-        })
-
-    });
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {

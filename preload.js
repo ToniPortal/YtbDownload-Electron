@@ -12,10 +12,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
     infoytid.innerHTML = infoyt;
 
-    var data = ipc.sendSync('servconvert', (input.value));
+    var data = ipc.send('servconvert', (input.value));
 
-    received.innerHTML = data;
+  });
 
+  var nb = 0;
+  const prog = document.getElementById('progress');
+
+
+
+  
+  ipc.on('down', (event, arg) => {
+  console.log(arg)
+    prog.setAttribute("value", parseInt(arg,10));
+
+  });
+
+  ipc.on('total', (event, arg) => {
+    console.log(arg)
+    prog.setAttribute("max", arg);
+  });
+
+  ipc.on('finish', (event, arg) => {
+
+    prog.setAttribute("max", (prog.getAttribute("max")));
+    alert("Download finished")
 
   });
 
