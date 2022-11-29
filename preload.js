@@ -18,9 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   var nb = 0;
   const prog = document.getElementById('progress');
-
-
-
   
   ipc.on('down', (event, arg) => {
   console.log(arg)
