@@ -25,7 +25,6 @@ function createWindow() {
 
     win.loadFile('./web/index.html')
 
-
     ipcMain.on('servinfo', async (event, arg) => {
 
         var yti = await ytdl.getBasicInfo(arg)
@@ -95,8 +94,6 @@ function createWindow() {
 
 app.whenReady().then(() => {
     createWindow()
-
-
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
