@@ -16,9 +16,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  var nb = 0;
   const prog = document.getElementById('progress');
-  
+
+  document.getElementById('dldanother').addEventListener('click', () => {
+
+    document.getElementById('progress').style.display = "block";
+    document.getElementById('twobutton').style.display = "none";
+    document.getElementById("convert").style.display = "block";
+    prog.setAttribute("value", 0);
+    document.getElementById("convert").innerText = "";
+  });
+
   ipc.on('down', (event, arg) => {
   console.log(arg)
     prog.setAttribute("value", parseInt(arg,10));
@@ -28,25 +36,23 @@ window.addEventListener('DOMContentLoaded', () => {
   ipc.on('total', (event, arg) => {
     console.log(arg)
     prog.setAttribute("max", arg);
+
+    document.getElementById('progress').style.display = "block";
+    document.getElementById('twobutton').style.display = "none";
+    document.getElementById("convert").style.display = "block";
+
   });
 
   ipc.on('finish', (event, arg) => {
 
     prog.setAttribute("max", (prog.getAttribute("max")));
+
+    document.getElementById("convert").style.display = "none";
+    document.getElementById('twobutton').style.display = "block";
+
     alert("Download finished")
-
+    document.getElementById('progress').style.display = "none";
   });
-
-  function timer() {
-    var texttimer = document.getElementById("timer");
-    var timer = 0;
-
-    setInterval(function () {
-      timer++;
-      texttimer.innerHTML = timer;
-      console.log(data)
-    }, 1000);
-  }
 
 
 })

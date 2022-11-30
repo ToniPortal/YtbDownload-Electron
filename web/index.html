@@ -2,24 +2,31 @@
 <html>
 
 <head>
-    <script src="renderer.js"></script>
-
+    <link rel="stylesheet" href="./src/css/style.css">
 </head>
 
 <body>
 
-    <input type="text" id="ytlink">
-    <br>
-    <button id="convert">Ytb</button>
+    <div class="container">
+        <label for="ytlink">Type your youtube link here :</label>
+        <input class="inputsearch" id="ytlink" type="text">
+        <br>
+        <button style="display: block;" id="convert">Ytb</button>
 
-    <span id="received"></span>
+        <span id="received"></span>
 
-    <span id="infoyt">infoyt</span>
+        <div style="display: none;" id="twobutton" class="twobutton">
+            <a class="button" href="../download/video.mp4" id="downlaodbtn" download>Download</a>
+            <button id="dldanother">Télécharger une autre vidéo</a>
+        </div>
 
-    <a href="../download/video.mp4" id="downlaodbtn" download>Download</a>
+        <progress id="progress" style="display: block;" value="0" max="100"></progress>
 
-    <progress id="progress" value="0" max="100" style="width:300px;"></progress>
+    </div>
 
+    <div id="divinfo" style="display: block;" class="container">
+        <span id="infoyt"></span>
+    </div>
 
 </body>
 
