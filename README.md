@@ -20,7 +20,7 @@ Here image
 Clone the project  
 
 ~~~bash  
-  git clone [https://github.com/Bouftout/compagnioncube](https://github.com/Bouftout/YtbDownload-Electron)
+  git clone https://github.com/Bouftout/YtbDownload-Electron
 ~~~
 
 Go to the project directory  
