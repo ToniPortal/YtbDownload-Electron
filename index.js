@@ -133,7 +133,7 @@ function createWindow() {
 
         var yti = await ytdl.getBasicInfo(arg);
         console.log(`Titre: ${yti.videoDetails.title}\nNom de la chaîne: ${yti.videoDetails.ownerChannelName}\nDate d'upload: ${yti.videoDetails.uploadDate}`)
-        event.returnValue = `<h1>Titre: ${yti.videoDetails.title}</h1><br><p>Nom de la chaîne: ${yti.videoDetails.ownerChannelName}</p><br><p>Date d'upload: ${yti.videoDetails.uploadDate}</p>`;
+        event.returnValue = `<h1>Title: ${yti.videoDetails.title}</h1><br><p>Name of the channel: ${yti.videoDetails.ownerChannelName}</p><br><p>Date of upload: ${yti.videoDetails.uploadDate}</p>`;
 
     });
 

@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('twobutton').style.display = "none";
     document.getElementById("convert").style.display = "block";
     prog.setAttribute("value", 0);
-    document.getElementById("convert").innerText = "";
+    // document.getElementById("convert").innerText = "";
   });
 
   ipc.on('down', (event, arg) => {
