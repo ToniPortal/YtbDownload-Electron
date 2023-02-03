@@ -1,6 +1,6 @@
 <h1 align="center">YtbDownload-Electron</h1>
 
-<p align="center">Une application faite avec eleclectron qui utulise le packet ytdl-core pour télécharger une vidéo youtube en 360P uniquement(pour l'instant) !<br></p>
+<p align="center">An application made with electron that uses the packet ytdl-core to download a youtube video in 360P only (for the moment) !!<br></p>
 
 
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://www.npmjs.com/package/ytdl)
