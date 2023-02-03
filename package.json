@@ -1,12 +1,12 @@
 {
   "name": "ytbto",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Une application faite avec eleclectron qui utulise le packet ytdl-core pour télécharger une vidéo youtube !",
   "main": "index.js",
   "scripts": {
     "test": "electron .",
     "start": "electron .",
-    "build": "electron-packager ./ YtbDownload-Electron --no-prune --app-version='1.0.0' --app-copyright --platform=win32 --arch=x64 --overwrite --icon=icon.ico --prune=true --out=release-builds --executable-name='YtbDownload-Electron' --win32metadata.CompanyName='YtbDownload-Electron' --win32metadata.FileDescription='YtbDownload-Electron' --win32metadata.ProductName='YtbDownload-Electron' --ignore='icon.ico' --ignore='./src/*' --ignore='README.md' --ignore='./download/video.mp4' --ignore='release-builds'"
+    "build": "electron-packager ./ YtbDownload-Electron --no-prune --app-version='1.1.0' --app-copyright --platform=win32 --arch=x64 --overwrite --icon=icon.ico --prune=true --out=release-builds --executable-name='YtbDownload-Electron' --win32metadata.CompanyName='YtbDownload-Electron' --win32metadata.FileDescription='YtbDownload-Electron' --win32metadata.ProductName='YtbDownload-Electron' --ignore='icon.ico' --ignore='./src/*' --ignore='README.md' --ignore='./download/video.mp4' --ignore='release-builds'"
   },
   "repository": {
     "type": "git",

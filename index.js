@@ -163,11 +163,13 @@ function createWindow() {
         })
     })
 
+    const basepath = app.getAppPath();
+
     ipcMain.on('servconvert', async (event, arg) => {
 
         await new Promise((resolve) => { // wait
             var video = ytdl(`${arg}`, { quality: 18 })
-            video.pipe(fs.createWriteStream('./download/video.mp4'))
+            video.pipe(fs.createWriteStream(`${basepath}/download/video.mp4`))
             video.on('close', () => {
                 resolve(); // finish
             })
