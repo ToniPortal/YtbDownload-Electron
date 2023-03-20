@@ -48,7 +48,7 @@ For running application.
 
 ### `npm run build`
 
-For building application in realease !
+For building application in release !
 
 ## Built With
 
@@ -60,6 +60,8 @@ For building application in realease !
 
 - [ ] Audio choice
 - [ ] Quality choice
+- [ ] Manage subscription/unsubscription grouping
+- [ ] Use api of youtube(Need Google Key)
 
 ## Author
 
