@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Bouftout/ytbtoall#readme",
   "devDependencies": {
-    "electron": "^22.1.0"
+    "electron": "^22.3.24"
   },
   "dependencies": {
     "ffmpeg-static": "^5.1.0",
