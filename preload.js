@@ -6,13 +6,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('convert').addEventListener('click', () => {
     var input = document.getElementById("ytlink");
-    var inputvalue = input.value
 
-    var infoyt = ipc.sendSync("servinfo", inputvalue);
+    const json = {
+      "url": input.value,
+      "quality": localStorage.getItem('choix')
+    };
+
+    var infoyt = ipc.sendSync("servinfo", input.value);
 
     infoytid.innerHTML = infoyt;
 
-    var data = ipc.send('servconvert', (input.value));
+    var data = ipc.send('servconvert', json);
 
   });
 
@@ -28,8 +32,9 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   ipc.on('down', (event, arg) => {
-  console.log(arg)
-    prog.setAttribute("value", parseInt(arg,10));
+    //parseInt(arg, 10)
+    console.log(arg)
+    prog.setAttribute("value", arg);
 
   });
 
@@ -50,8 +55,26 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("convert").style.display = "none";
     document.getElementById('twobutton').style.display = "block";
 
-    alert("Download finished")
+    // alert("Download finished")
     document.getElementById('progress').style.display = "none";
+  });
+
+
+  //Select quality video
+  const sel = document.getElementById('choix');
+
+  // Charger la valeur précédemment enregistrée, si disponible
+  const choixPrecedent = localStorage.getItem('choix');
+  if (!choixPrecedent) {
+    sel.value = choixPrecedent;
+  }
+
+  sel.addEventListener('change', () => {
+    const choix = sel.value;
+
+    // Enregistrer le choix dans le localStorage
+    localStorage.setItem('choix', choix);
+    console.log(`Choix enregistré : ${choix}`);
   });
 
 
