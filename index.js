@@ -97,6 +97,41 @@ function createWindow() {
                         win.webContents.send('finish', 'end')
                     });
                 });
+            } else if (json.quality == "audio") {
+
+                console.log("AUDIO")
+                const video = ytdl(json.url, {
+                    quality: 'highestaudio', // Sélectionnez le meilleur format audio disponible
+                    filter: 'audioonly', // Filtrez uniquement l'audio
+                });
+                video.pipe(fs.createWriteStream(`${basepath}/download/audio.mp3`))
+
+
+
+                video.on('close', async () => {
+                    resolve(); // finish
+                })
+
+                video.on('response', function (res) {
+                    var totalSize = parseInt(res.headers['content-length'], 10);
+                    var dataRead = 0;
+                    if (dataRead == 0) {
+                        console.log("Total" + totalSize)
+                        win.webContents.send('total', totalSize)
+                    }
+                    res.on('data', function (data) {
+                        dataRead += data.length;
+                        // var percent = (dataRead / totalSize * 100).toFixed(2);
+
+                        win.webContents.send('down', `${dataRead}`);
+
+                    });
+
+                    res.on('end', function () {
+                        win.webContents.send('finish', 'end')
+                    });
+                })
+
             } else {
                 const ref = json.url;
                 const tracker = {
