@@ -16,12 +16,12 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '14'
 
     - name: Install dependencies
       run: |
         npm install
-        npm install electron-packager
+        npm install electron-builder
 
     - name: Build Electron app
       run: npm run build
@@ -30,9 +30,8 @@ jobs:
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
-        files:  |
-          YtbDownload-Electron-win32-x64/*
-          YtbDownload-Electron-linux-x64/*
+        files: |
+          dist/*
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ github.ref_name }}

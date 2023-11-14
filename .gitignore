@@ -20,6 +20,8 @@ pids
 *.pid.lock
 
 release-builds/YtbDownload.**
+YtbDownload-Electron-win32-x64/**
+YtbDownload-Electron-win32-x64
 *.zip
 *.tar.gz
 *.7zip

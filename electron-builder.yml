@@ -1,0 +1,11 @@
+# electron-builder.yml
+appId: com.example.ytbdownload
+productName: YtbDownload
+directories:
+  output: dist
+win:
+  target: nsis
+mac:
+  target: dmg
+linux:
+  target: deb
