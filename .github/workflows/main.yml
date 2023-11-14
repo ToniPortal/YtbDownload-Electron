@@ -24,7 +24,8 @@ jobs:
           npm install electron-packager
 
     - name: Build Electron app
-      run: npm run build
+      run: npx electron-packager ./ YtbDownload-Electron --no-prune --app-version='1.1.0' --app-copyright --platform=win32 --arch=x64 --overwrite --icon=icon.ico --prune=true --out=release-builds --executable-name='YtbDownload-Electron' --win32metadata.CompanyName='YtbDownload-Electron' --win32metadata.FileDescription='YtbDownload-Electron' --win32metadata.ProductName='YtbDownload-Electron' --ignore='icon.ico' --ignore='./src/*' --ignore='README.md' --ignore='./download/video.mp4' --ignore='release-builds'
+
 
     - name: Create Release
       id: create_release
