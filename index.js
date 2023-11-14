@@ -26,7 +26,7 @@ function createWindow() {
 
 
 
-    win.loadFile('./web/index.html');
+    win.loadFile('./web/index.html'); //Charger le fichier index.html
 
     ipcMain.on('servinfo', async (event, arg) => {
 
