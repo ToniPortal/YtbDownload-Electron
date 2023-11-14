@@ -1,4 +1,4 @@
-name: Build and Release
+name: Release
 
 on:
   push:
@@ -6,31 +6,22 @@ on:
       - master
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Use Node.js 14
+    - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        registry-url: 'https://registry.npm.taobao.org'  # Utilisation du miroir Taobao
 
-    - name: Cache node modules
-      uses: actions/cache@v2
-      with:
-        path: |
-          node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Install Dependencies
-      run: npm install
-      timeout-minutes: 5
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install electron-packager
 
     - name: Build Electron app
       run: npm run build
@@ -42,12 +33,14 @@ jobs:
         files: |
           YtbDownload-Electron-win32-x64
         token: ${{ secrets.GITHUB_TOKEN }}
+        tag_name: v${{ github.ref }}
+        name: Release v${{ github.ref_name }}
 
     - name: Update Release Version
       run: echo ::set-output name=release_version::${{ steps.create_release.outputs.release }}
 
-    - name: Update package.json version
-      run: npm version ${{ steps.release_version }}
+    # - name: Update package.json version
+    #   run: npm version ${{ steps.release_version }}
 
     - name: Push changes
       uses: ad-m/github-push-action@v0.7.0
