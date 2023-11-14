@@ -31,7 +31,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/**
+          dist/YtbDownload Setup 1.1.0.exe
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ github.ref_name }}
