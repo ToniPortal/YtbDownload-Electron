@@ -30,8 +30,9 @@ jobs:
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
-        files: |
-          YtbDownload*
+        files:  |
+          YtbDownload-Electron-win32-x64/*
+          YtbDownload-Electron-linux-x64/*
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ github.ref_name }}
