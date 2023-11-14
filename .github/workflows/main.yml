@@ -26,12 +26,6 @@ jobs:
     - name: Build Electron app
       run: npm run build
 
-    - name: Create Git tag
-      run: git tag v${{ steps.release_version.outputs.release }}
-    
-    - name: Push Git tag
-      run: git push origin v${{ steps.release_version.outputs.release }}
-
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
@@ -39,6 +33,8 @@ jobs:
         files: |
           release-builds/**
         token: ${{ secrets.GITHUB_TOKEN }}
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref_name }}
 
     - name: Update Release Version
       run: echo ::set-output name=release_version::${{ steps.create_release.outputs.release }}
