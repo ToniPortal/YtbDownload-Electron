@@ -23,7 +23,7 @@
     "@electron/notarize": "^2.1.0",
     "@electron/osx-sign": "^1.0.5",
     "electron": "^22.1.0",
-    "electron-builder": "^22.14.13",
+    "electron-builder": "^24.6.4",
     "electron-packager": "^17.1.2"
   },
   "dependencies": {
