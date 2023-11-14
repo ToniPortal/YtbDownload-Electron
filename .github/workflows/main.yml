@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install
-        npm install electron-builder
+        npm install electron-packager
 
     - name: Build Electron app
       run: npm run build
@@ -38,8 +38,3 @@ jobs:
 
     - name: Update Release Version
       run: echo ::set-output name=release_version::${{ steps.create_release.outputs.release }}
-
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.7.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
