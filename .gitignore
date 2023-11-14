@@ -19,7 +19,7 @@ pids
 *.seed
 *.pid.lock
 
-release-builds/
+release-builds/YtbDownload.**
 *.zip
 *.tar.gz
 *.7zip
