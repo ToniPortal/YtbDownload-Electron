@@ -33,7 +33,7 @@ jobs:
         files: |
           dist/**
           !dist/win-unpacked/
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ github.ref_name }}
 
