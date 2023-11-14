@@ -39,8 +39,8 @@ jobs:
     - name: Update Release Version
       run: echo ::set-output name=release_version::${{ steps.create_release.outputs.release }}
 
-    - name: Update package.json version
-      run: npm version ${{ steps.release_version }}
+    # - name: Update package.json version
+    #   run: npm version ${{ steps.release_version }}
 
     - name: Push changes
       uses: ad-m/github-push-action@v0.7.0
