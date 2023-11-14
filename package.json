@@ -6,7 +6,7 @@
   "scripts": {
     "test": "electron .",
     "start": "electron .",
-    "build": "electron-builder --windows --dir"
+    "build": "electron-builder --windows"
   },
   "repository": {
     "type": "git",
