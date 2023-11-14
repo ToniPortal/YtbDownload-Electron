@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm install
-        npm install electron-packager
+        npm install electron-builder
 
     - name: Build Electron app
       run: npm run build
@@ -31,10 +31,18 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/**
-        token: ${{ secrets.GH_TOKEN }}
+          dist/*
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ github.ref_name }}
 
     - name: Update Release Version
       run: echo ::set-output name=release_version::${{ steps.create_release.outputs.release }}
+
+    - name: Pull latest changes from master
+      run: git pull origin master
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.7.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
