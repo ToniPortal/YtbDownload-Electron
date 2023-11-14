@@ -34,7 +34,7 @@ jobs:
           release-builds/**
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
 
     - name: Update Release Version
       run: echo ::set-output name=release_version::${{ steps.create_release.outputs.release }}
