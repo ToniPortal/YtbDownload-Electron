@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -22,16 +22,20 @@ jobs:
       run: |
         npm install
         npm install -g electron-packager
-        
+        npm install -g @zeit/ncc
+        npm install -g gh
+
     - name: Build Electron app
       run: npm run build
 
-    - name: Download GitHub CLI (gh)
+    - name: Package Electron app (Windows)
       run: |
-        wget https://github.com/cli/cli/releases/latest/download/gh_linux_amd64.tar.gz
-        tar xvf gh_linux_amd64.tar.gz
-        sudo mv gh_* /usr/local/bin/gh
+        electron-packager . mon-projet --platform=win32
+
+    - name: Bundle app using @zeit/ncc
+      run: ncc build mon-projet -o dist
 
     - name: Create Release
-      run: |
-        gh release create v${{ github.ref }} ./dist/MonProjet-win32-x64/*.exe -n "Release notes"
+      run: gh release create v1.1.0 ./dist/* -t "Release v1.1.0"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
