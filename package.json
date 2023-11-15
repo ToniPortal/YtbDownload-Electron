@@ -6,7 +6,7 @@
   "scripts": {
     "test": "electron .",
     "start": "electron .",
-    "build": "electron-builder --windows"
+    "build": "electron-builder -c electron-builder.yml"
   },
   "repository": {
     "type": "git",
