@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '14' # Change to the version that works with your project
+        node-version: '18'
 
     - name: Install dependencies
       run: |
@@ -25,10 +25,6 @@ jobs:
 
     - name: Build Electron app
       run: npm run build
-
-    # - name: Set permissions on dist
-    #   run: |
-    #     icacls .\dist\ /grant "%USERNAME%:RX"
 
     - name: Create Release
       id: create_release
