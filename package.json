@@ -1,11 +1,11 @@
 {
   "name": "ytbto",
-  "version": "1.2.3",
+  "version": "1.2.2",
   "description": "Une application faite avec eleclectron qui utulise le packet ytdl-core pour télécharger une vidéo youtube !",
   "main": "index.js",
   "scripts": {
     "test": "electron .",
-    "start": "electron .",
+    "start": "npm version patch && electron .",
     "build": "electron-packager . YtbDownload --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "repository": {
