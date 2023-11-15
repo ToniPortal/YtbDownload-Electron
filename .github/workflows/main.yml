@@ -22,7 +22,6 @@ jobs:
       run: |
         npm install
         npm install -g electron-packager
-        npm install -g gh
 
     - name: Build Electron app
       run: npm run build
@@ -31,6 +30,16 @@ jobs:
       run: Compress-Archive -Path dist/MonProjet-win32-x64 -DestinationPath dist/MonProjet-win32-x64.zip -Force
 
     - name: Create Release
-      run: gh release create v1.2.0 ./dist/MonProjet-win32-x64.zip -t "Release v1.2.0"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/MonProjet-win32-x64.zip
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag_name: v${{ github.ref }}
+        name: Release v${{ github.ref_name }}
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.7.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
