@@ -33,7 +33,7 @@ jobs:
         electron-packager . mon-projet --platform=win32
 
     - name: Bundle app using @zeit/ncc
-      run: ncc build mon-projet -o dist
+      run: ncc build mon-projet-win32-x64 -o dist
 
     - name: Create Release
       run: gh release create v1.1.0 ./dist/* -t "Release v1.2.0"
