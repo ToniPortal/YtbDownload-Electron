@@ -6,7 +6,7 @@
   "scripts": {
     "test": "electron .",
     "start": "electron .",
-    "build": "electron-builder -c electron-builder.yml"
+    "build": "electron-packager . MonProjet --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "repository": {
     "type": "git",

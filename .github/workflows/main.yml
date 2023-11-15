@@ -7,7 +7,7 @@ on:
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -20,31 +20,15 @@ jobs:
 
     - name: Install dependencies
       run: |
-        npm install
-        npm install electron-builder
-
-
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-        path: |
-          node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+        npm install -g electron-packager
+        npm install -g ghr
 
     - name: Build Electron app
       run: npm run build
 
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          dist/*.exe
-        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get package name
+      id: package_name
+      run: echo "::set-output name=name::$(ls -d dist/*)"
 
-    - name: Push changes
-      uses: ad-m/github-push-action@v0.7.0
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create Release
+      run: ghr -t ${{ secrets.GITHUB_TOKEN }} -u ${{ github.repository_owner }} -r ${{ github.repository }} -b "Release notes" -n "Release" ${{ steps.package_name.outputs.name }}
