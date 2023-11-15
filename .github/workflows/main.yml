@@ -18,6 +18,10 @@ jobs:
       with:
         node-version: '16'
 
+    - name: Get package version
+      id: version
+      run: echo "::set-output name=version::$(node -p "require('./package.json').version")"      
+
     - name: Install dependencies
       run: |
         npm install
@@ -37,7 +41,7 @@ jobs:
           dist/MonProjet-win32-x64.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
-        name: Release v$(node -p "require('./package.json').version")
+        name: Release v${{ steps.version.outputs.version }}
 
     - name: Push changes
       uses: ad-m/github-push-action@v0.7.0
