@@ -1,14 +1,17 @@
 # electron-builder.yml
 
-win:
-  target: nsis
-  icon: ''
+appId: com.example.YtbDownload
 
 nsis:
   oneClick: false
   perMachine: true
-  allowToChangeInstallationDirectory: true
-  deleteAppDataOnUninstall: true
+  allowToChangeInstallationDirectory: false
 
-extraMetadata:
-  main: ''
+win:
+  target: nsis
+
+mac:
+  target: default
+
+linux:
+  target: default
