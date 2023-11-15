@@ -31,14 +31,14 @@ jobs:
       run: npm run build
   
     - name: Zip the app
-      run: Compress-Archive -Path dist/MonProjet-win32-x64 -DestinationPath dist/MonProjet-win32-x64.zip -Force
+      run: Compress-Archive -Path dist/YtbDownload-win32-x64 -DestinationPath dist/YtbDownload-win32-x64.zip -Force
 
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/MonProjet-win32-x64.zip
+          dist/YtbDownload-win32-x64.zip
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ steps.version.outputs.version }}
