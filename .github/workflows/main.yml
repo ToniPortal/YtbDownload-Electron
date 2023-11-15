@@ -19,16 +19,17 @@ jobs:
         node-version: '16'
 
     - name: Install dependencies
-      run: |
-        npm install -g electron-packager
-        npm install -g ghr
+      run: npm install -g electron-packager
 
     - name: Build Electron app
       run: npm run build
 
-    - name: Get package name
-      id: package_name
-      run: echo "::set-output name=name::$(ls -d dist/*)"
+    - name: Download GitHub CLI (gh)
+      run: |
+        wget https://github.com/cli/cli/releases/latest/download/gh_linux_amd64.tar.gz
+        tar xvf gh_linux_amd64.tar.gz
+        sudo mv gh_* /usr/local/bin/gh
 
     - name: Create Release
-      run: ghr -t ${{ secrets.GITHUB_TOKEN }} -u ${{ github.repository_owner }} -r ${{ github.repository }} -b "Release notes" -n "Release" ${{ steps.package_name.outputs.name }}
+      run: |
+        gh release create v${{ github.ref }} ./dist/MonProjet-win32-x64/*.exe -n "Release notes"
