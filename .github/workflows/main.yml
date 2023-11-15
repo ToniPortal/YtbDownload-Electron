@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '14' # Change to the version that works with your project
 
     - name: Install dependencies
       run: |
@@ -26,16 +26,16 @@ jobs:
     - name: Build Electron app
       run: npm run build
 
-    - name: Set permissions on dist
-      run: |
-        icacls .\dist\ /grant "%USERNAME%:RX"
+    # - name: Set permissions on dist
+    #   run: |
+    #     icacls .\dist\ /grant "%USERNAME%:RX"
 
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/YtbDownload Setup 1.1.0.exe
+          dist/YtbDownload\ Setup\ 1.1.0.exe
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: v${{ github.ref }}
         name: Release v${{ github.ref_name }}
