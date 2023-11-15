@@ -24,14 +24,13 @@ jobs:
         npm install -g electron-packager
         npm install -g gh
 
-    - name: Package Electron app (Windows)
-      run: |
-        electron-packager . MonProjet --platform=win32
-
+    - name: Build Electron app
+      run: npm run build
+  
     - name: Zip the app
       run: Compress-Archive -Path dist/MonProjet-win32-x64 -DestinationPath dist/MonProjet-win32-x64.zip -Force
 
     - name: Create Release
-      run: gh release create v1.1.0 ./dist/MonProjet-win32-x64.zip -t "Release v1.1.0"
+      run: gh release create v1.2.0 ./dist/MonProjet-win32-x64.zip -t "Release v1.2.0"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
