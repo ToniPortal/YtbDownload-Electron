@@ -22,20 +22,16 @@ jobs:
       run: |
         npm install
         npm install -g electron-packager
-        npm install -g @zeit/ncc
         npm install -g gh
-
-    - name: Build Electron app
-      run: npm run build
 
     - name: Package Electron app (Windows)
       run: |
-        electron-packager . mon-projet --platform=win32
+        electron-packager . MonProjet --platform=win32
 
-    - name: Bundle app using @zeit/ncc
-      run: ncc build mon-projet-win32-x64 -o dist
+    - name: Zip the app
+      run: Compress-Archive -Path dist/MonProjet-win32-x64 -DestinationPath dist/MonProjet-win32-x64.zip -Force
 
     - name: Create Release
-      run: gh release create v1.1.0 ./dist/* -t "Release v1.2.0"
+      run: gh release create v1.1.0 ./dist/MonProjet-win32-x64.zip -t "Release v1.1.0"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
