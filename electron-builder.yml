@@ -1,11 +1,11 @@
-# electron-builder.yml
-
 appId: com.example.YtbDownload
+
+files:
+  - 'dist/**/*'
 
 nsis:
   oneClick: false
   perMachine: true
-  allowToChangeInstallationDirectory: false
 
 win:
   target: nsis
@@ -15,3 +15,7 @@ mac:
 
 linux:
   target: default
+
+publish:
+  provider: github
+  token: ${{ secrets.GITHUB_TOKEN }}
